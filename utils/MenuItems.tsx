@@ -2,6 +2,7 @@ import {MenuProps} from "antd";
 import {MdOutlineDashboard} from "react-icons/md";
 import React from "react";
 
+
 type MenuItem = Required<MenuProps>["items"][number];
 const getItem = (
 	label: React.ReactNode,
@@ -19,5 +20,6 @@ const getItem = (
 
 export const items: MenuItem[] = [
 	getItem("Dashboard", '/', <MdOutlineDashboard/>)
-]
+];
+
 
