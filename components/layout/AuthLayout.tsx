@@ -23,10 +23,8 @@ const AuthLayout = ({children}: AuthLayoutProps) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex w-full lg:w-1/2 bg-white py-30 justify-center p-8">
-				<div className="w-full">
-					{children}
-				</div>
+			<div className="flex flex-col p-8 w-1/2 bg-white">
+				{children}
 			</div>
 		</div>
 	)
