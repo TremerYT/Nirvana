@@ -2,6 +2,7 @@
 
 import {Button, Form, Input} from "antd";
 import {EyeInvisibleOutlined, EyeTwoTone} from "@ant-design/icons";
+import {useRouter} from "next/navigation";
 
 type PasswordResetForm = {
 	password: string;
@@ -10,6 +11,7 @@ type PasswordResetForm = {
 
 const PasswordResetForm = () => {
 	const [form] = Form.useForm()
+	const router = useRouter();
 	return (
 		<Form
 			form={form}
@@ -63,7 +65,7 @@ const PasswordResetForm = () => {
 			
 			<Button
 				htmlType="submit"
-				
+				onClick={() => router.push("/auth/forgot_password/success")}
 				className="bg-black! text-white! px-20 py-8! rounded-2xl! font-bold! w-full"
 			>
 				Reset password

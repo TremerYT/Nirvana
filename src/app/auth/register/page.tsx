@@ -62,13 +62,11 @@ const Register = () => {
 	return (
 		<>
 			<Button
-				type="link"
-				icon={<ArrowLeftOutlined/>}
+				type="text"
+				icon={<ArrowLeftOutlined className="text-xl!"/>}
 				onClick={() => router.push("/auth/login")}
-				className="mb-10"
-			>
-				Back To login
-			</Button>
+				className="mb-10 w-1/6"
+			/>
 			<Steps
 				current={current}
 				items={steps.map((item) => ({title: item.key}))}

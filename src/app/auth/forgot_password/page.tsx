@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import ForgotPasswordForm from "../../../../components/forms/authentication/forgot_password/ForgotPasswordForm";
 import {ArrowLeftOutlined} from "@ant-design/icons";
@@ -11,12 +11,10 @@ const ForgotPassword = () => {
 		<>
 			<Button
 				type="link"
-				icon={<ArrowLeftOutlined/>}
+				icon={<ArrowLeftOutlined className="text-xl!"/>}
 				onClick={() => router.push("/auth/login")}
-				className="mb-10"
-			>
-				Back To login
-			</Button>
+				className="mb-10 w-1/6"
+			/>
 			<div className="flex flex-col text-center gap-2 mb-10">
 				<h1 className="text-4xl font-bold">Forgot Password?</h1>
 				<p className="text-center">No Worries, Enter your account email to receive a<br/> passord reset link</p>
