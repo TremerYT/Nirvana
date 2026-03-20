@@ -13,7 +13,7 @@ export const avatarMenuItems: MenuProps["items"] = [
 		icon: <SettingOutlined/>
 	},
 	{
-		key: "/login",
+		key: "/auth/login",
 		label: "Logout",
 		icon: <LogoutOutlined/>
 	},
