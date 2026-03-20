@@ -18,14 +18,13 @@ const LoginForm = () => {
 			form={form}
 			layout="vertical"
 			requiredMark={false}
-			className="w-1/2"
 		>
 			<Form.Item
 				name="userName"
 				label="Username"
 				rules={[{required: true, message: "Username is required"}]}
 			>
-				<Input size="large" className="w-1/2 mx-auto"/>
+				<Input size="large" className="w-full!"/>
 			</Form.Item>
 			<Form.Item
 				name="password"
