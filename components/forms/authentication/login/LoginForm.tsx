@@ -35,7 +35,7 @@ const LoginForm = () => {
 			</Form.Item>
 			
 			<Form.Item name="remember" valuePropName="checked">
-				<Row justify="space-between">
+				<Row justify="space-between" align={"middle"}>
 					<Col span={12}>
 						<Checkbox>Remember Me</Checkbox>
 					</Col>
