@@ -6,11 +6,11 @@ type AuthLayoutProps = {
 const AuthLayout = ({children}: AuthLayoutProps) => {
 	return (
 		<div className="min-h-screen w-full flex">
-			<div className="hidden lg:flex lg:w-1/2 relative bg-linear-to-br from-purple-600 to-purple-200">
+			<div className="lg:flex lg:w-1/2 relative bg-linear-to-br from-purple-600 to-purple-200">
 				<div
 					className="absolute inset-0 bg-[url('/login.jpeg')] bg-cover bg-center bg-no-repeat opacity-30"
 				/>
-				<div className="relative z-10 flex flex-col justify-between h-full p-12 text-white">
+				<div className="relative z-10 flex flex-col justify-between p-12 text-white">
 					<div>
 						<h1 className="text-5xl font-bold">Nirvana</h1>
 					</div>
@@ -23,7 +23,7 @@ const AuthLayout = ({children}: AuthLayoutProps) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-col p-8 w-1/2 bg-white">
+			<div className="flex flex-col p-8 w-1/2 bg-white h-full">
 				{children}
 			</div>
 		</div>

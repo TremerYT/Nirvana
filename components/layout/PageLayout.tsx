@@ -3,12 +3,11 @@
 import {Avatar, Badge, Button, Dropdown, Layout, Menu,} from "antd";
 import React, {useState} from "react";
 import {BellOutlined, MailOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined} from "@ant-design/icons";
-import {items} from "../../utils/MenuItems";
 import {usePathname, useRouter} from "next/navigation";
-import Image from "next/image";
-import {avatarMenuItems} from "../../utils/DropdownItems";
+import {avatarMenuItems, items} from "../../config/menu";
+import Image from 'next/image';
 
-const {Header, Footer, Sider, Content} = Layout;
+const {Header, Sider, Content} = Layout;
 type LayoutProps = {
 	children: React.ReactNode;
 }
@@ -19,11 +18,14 @@ const PageLayout = ({children}: LayoutProps) => {
 	return (
 		<Layout className="h-screen w-full overflow-hidden">
 			<Sider
-				width="18%"
+				width={320}
+				theme={"light"}
 				trigger={null}
-				collapsible={true}
+				collapsible
 				collapsed={collapsed}
-				theme={!collapsed ? "light" : "dark"}
+				className="border-r border-gray-200 hidden lg:block"
+				breakpoint="lg"
+				collapsedWidth={80}
 			>
 				<div className="flex justify-center p-2 border-b border-solid border-gray-200 bg-white">
 					{
@@ -53,7 +55,7 @@ const PageLayout = ({children}: LayoutProps) => {
 							className="transition-all duration-300"
 						/>
 					</div>
-					<div className={`overflow-hidden transition-all duration-600 text-right ${
+					<div className={`overflow-hidden transition-all duration-500 text-right ${
 						collapsed
 							? 'max-w-0 opacity-0 -translate-x-2'
 							: 'max-w-[220px] opacity-100 translate-x-0'
@@ -62,17 +64,21 @@ const PageLayout = ({children}: LayoutProps) => {
 						<p className="text-[14px] whitespace-nowrap">Sytem Administrator</p>
 					</div>
 				</div>
-				<Menu
-					items={items}
-					selectedKeys={[pathname]}
-					mode="inline"
-					theme={!collapsed ? "light" : "dark"}
-					onClick={({key}) => router.push(String(key))}
-				/>
+				<div className="flex-1 overflow-y-auto custom-scrollbar">
+					<Menu
+						items={items}
+						selectedKeys={[pathname]}
+						mode="inline"
+						theme="light"
+						onClick={({key}) => router.push(String(key))}
+					/>
+				</div>
+			
 			</Sider>
 			<Layout>
 				<Header
-					className="bg-white! shadow-sm flex justify-between items-center px-4! relative z-10"
+					className="bg-white shadow-sm flex justify-between items-center px-4 sticky top-0 z-10 border-b border-gray-100"
+					style={{backgroundColor: '#ffffff'}}
 				>
 					<div className="flex items-center gap-4">
 						<Button
@@ -111,8 +117,9 @@ const PageLayout = ({children}: LayoutProps) => {
 						</Dropdown>
 					</div>
 				</Header>
-				<Content>{children}</Content>
-				<Footer></Footer>
+				<Content className="flex-1 overflow-y-auto bg-gray-50 p-6">
+					{children}
+				</Content>
 			</Layout>
 		</Layout>
 	);
