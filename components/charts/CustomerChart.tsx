@@ -8,7 +8,8 @@ const CustomerChart = () => {
 	const options = {
 		chart: {
 			type: "radialBar" as const,
-			height: 150
+			height: "100%",
+			width: "100%"
 		},
 		plotOptions: {
 			radialBar: {
@@ -32,6 +33,19 @@ const CustomerChart = () => {
 		},
 		colors: ["#4CAF50", "#FF7A59"],
 		labels: ["New Customers", "Returning Customers"],
+		responsive: [
+			{
+				breakpoint: 480,
+				options: {
+					chart: {
+						width: 200
+					},
+					legend: {
+						position: "bottom" as const
+					}
+				}
+			}
+		],
 		legend: {
 			show: true,
 			position: "bottom" as const
