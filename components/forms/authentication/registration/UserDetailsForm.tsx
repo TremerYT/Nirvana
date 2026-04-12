@@ -15,21 +15,21 @@ const UserDetailsForm = () => {
 			</Col>
 			<Col span={24}>
 				<Form.Item
-					name="userName"
-					label="Username"
-					rules={[{required: true, message: "Username is required"}]}
-				>
-					<Input size="large"/>
-				</Form.Item>
-			</Col>
-			<Col span={24}>
-				<Form.Item
 					name="email"
 					label="Email"
 					rules={[
 						{required: true, message: "Email is required"},
 						{type: "email", message: "Enter a valid email address"}
 					]}
+				>
+					<Input size="large"/>
+				</Form.Item>
+			</Col>
+			<Col span={24}>
+				<Form.Item
+					name="idNumber"
+					label="ID Number"
+					rules={[{required: true, message: "Id number is required"}]}
 				>
 					<Input size="large"/>
 				</Form.Item>

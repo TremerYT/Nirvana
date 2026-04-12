@@ -1,7 +1,6 @@
 import type {MenuProps} from "antd";
-import {LogoutOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
+import {AppstoreOutlined, DashboardOutlined, LogoutOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
 import React from "react";
-import {MdOutlineDashboard} from "react-icons/md";
 
 export const avatarMenuItems: MenuProps["items"] = [
 	{
@@ -37,5 +36,8 @@ const getItem = (
 }
 
 export const items: MenuItem[] = [
-	getItem("Dashboard", '/', <MdOutlineDashboard/>)
+	getItem("Dashboard", '/', <DashboardOutlined/>),
+	getItem("Products", "/products", <AppstoreOutlined/>, [
+		getItem("Add Product", "/products/add", null),
+	])
 ];

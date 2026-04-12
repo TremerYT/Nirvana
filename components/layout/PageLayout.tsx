@@ -73,7 +73,6 @@ const PageLayout = ({children}: LayoutProps) => {
 						onClick={({key}) => router.push(String(key))}
 					/>
 				</div>
-			
 			</Sider>
 			<Layout>
 				<Header
