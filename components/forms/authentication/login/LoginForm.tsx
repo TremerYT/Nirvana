@@ -20,9 +20,9 @@ const LoginForm = () => {
 			requiredMark={false}
 		>
 			<Form.Item
-				name="userName"
-				label="Username"
-				rules={[{required: true, message: "Username is required"}]}
+				name="email"
+				label="Email"
+				rules={[{required: true, message: "Email is required"}]}
 			>
 				<Input size="large" className="w-full!"/>
 			</Form.Item>
