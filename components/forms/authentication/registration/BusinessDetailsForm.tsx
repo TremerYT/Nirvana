@@ -6,7 +6,7 @@ const BusinessDetailsForm = () => {
 			<Col span={24}>
 				<Form.Item
 					name="businessName"
-					label="Business name"
+					label="Business Name"
 					rules={[{required: true, message: "Business name is required"}]}
 				>
 					<Input size="large"/>
@@ -16,7 +16,7 @@ const BusinessDetailsForm = () => {
 			<Col span={24}>
 				<Form.Item
 					name="phone"
-					label="Company phone"
+					label="Company Phone"
 					rules={[
 						{
 							required: true,
