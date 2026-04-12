@@ -9,6 +9,7 @@ const {Dragger} = Upload;
 const props: UploadProps = {
 	name: "file",
 	multiple: false,
+	maxCount: 1,
 	beforeUpload: () => false
 }
 
@@ -99,7 +100,7 @@ const AddProductForm = () => {
 							<Form.Item
 								name="status"
 								label="Status"
-								rules={[{required: true}]}
+								rules={[{required: true, message: "Status is required"}]}
 							>
 								<Select
 									options={[
@@ -111,25 +112,41 @@ const AddProductForm = () => {
 						</Col>
 						
 						<Col span={12}>
-							<Form.Item name="costPrice" label="Cost Price" rules={[{required: true}]}>
+							<Form.Item
+								name="costPrice"
+								label="Cost Price"
+								rules={[{required: true, message: "Cost price is required"}]}
+							>
 								<InputNumber style={{width: "100%"}}/>
 							</Form.Item>
 						</Col>
 						
 						<Col span={12}>
-							<Form.Item name="unitPrice" label="Base Price" rules={[{required: true}]}>
+							<Form.Item
+								name="unitPrice"
+								label="Base Price"
+								rules={[{required: true, message: "Base price is required"}]}
+							>
 								<InputNumber style={{width: "100%"}}/>
 							</Form.Item>
 						</Col>
 						
 						<Col span={12}>
-							<Form.Item name="quantity" label="Quantity" rules={[{required: true}]}>
+							<Form.Item
+								name="quantity"
+								label="Quantity"
+								rules={[{required: true, message: "Quantity is required"}]}
+							>
 								<InputNumber style={{width: "100%"}}/>
 							</Form.Item>
 						</Col>
 						
 						<Col span={12}>
-							<Form.Item name="threshold" label="Stock Alert Threshold" rules={[{required: true}]}>
+							<Form.Item
+								name="threshold"
+								label="Stock Alert Threshold"
+								rules={[{required: true, message: "Threshold is required"}]}
+							>
 								<InputNumber style={{width: "100%"}}/>
 							</Form.Item>
 						</Col>
@@ -169,6 +186,7 @@ const AddProductForm = () => {
 										},
 									},
 								]}
+								initialValue={0}
 							>
 								<Space.Compact style={{width: "100%"}}>
 									<InputNumber style={{width: "100%"}}/>
@@ -205,7 +223,7 @@ const AddProductForm = () => {
 											validator(_, value) {
 												if (!value) return Promise.resolve();
 												
-												if (currentDiscountType === "percentage" && value > 100) {
+												if (currentTaxType === "percentage" && value > 100) {
 													return Promise.reject("Cannot exceed 100%");
 												}
 												if (value < 0) {
@@ -215,6 +233,7 @@ const AddProductForm = () => {
 											},
 										},
 									]}
+									initialValue={0}
 								>
 									<Space.Compact style={{width: "100%"}}>
 										<InputNumber style={{width: "100%"}}/>
@@ -239,6 +258,7 @@ const AddProductForm = () => {
 							<Form.Item
 								name="description"
 								label="Description"
+								rules={[{required: true, message: "Description is required"}]}
 							>
 								<Input.TextArea rows={6}/>
 							</Form.Item>
@@ -252,7 +272,10 @@ const AddProductForm = () => {
 								name="mainImage"
 								label="Main Image"
 								valuePropName="fileList"
-								getValueFromEvent={(e) => e.fileList}
+								getValueFromEvent={(e) => {
+									const fileList = e?.fileList || [];
+									return fileList.slice(-1);
+								}}
 								rules={[{required: true, message: 'Please upload at least one image'}]}
 							>
 								<Dragger {...props}>
@@ -268,6 +291,7 @@ const AddProductForm = () => {
 								name="galleryImages"
 								valuePropName="fileList"
 								getValueFromEvent={(e) => e.fileList}
+								rules={[{required: true, message: "Pleas upload atleast one image variant of the product"}]}
 							>
 								<Upload
 									listType="picture-card"
@@ -284,6 +308,23 @@ const AddProductForm = () => {
 					</Row>
 				</Col>
 			</Row>
+			<div className="flex gap-4 justify-end">
+				<Button
+					type={"primary"}
+					htmlType={"submit"}
+					size={"large"}
+				>
+					Add Product
+				</Button>
+				<Button
+					type={"primary"}
+					htmlType={"reset"}
+					size={"large"}
+					danger
+				>
+					Cancel
+				</Button>
+			</div>
 		</Form>
 	);
 };

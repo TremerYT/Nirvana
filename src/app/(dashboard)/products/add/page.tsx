@@ -5,9 +5,15 @@ import AddProductForm from "../../../../../components/forms/product/AddProductFo
 
 const AddProductPage = () => {
 	return (
-		<Card title="Add Product">
-			<AddProductForm/>
-		</Card>
+		<>
+			<div className="flex flex-col items-start mb-5">
+				<h2 className="text-3xl">Add Product</h2>
+				<p>Create and manage your products</p>
+			</div>
+			<Card>
+				<AddProductForm/>
+			</Card>
+		</>
 	);
 };
 
