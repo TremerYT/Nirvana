@@ -1,5 +1,7 @@
 import "./global.css";
 import React from "react";
+import {ThemeProvider} from "../../context/ThemeContext";
+
 
 type LayoutProps = {
 	children: React.ReactNode;
@@ -7,9 +9,11 @@ type LayoutProps = {
 
 const RootLayout = ({children}: LayoutProps) => {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 		<body suppressHydrationWarning>
-		{children}
+		<ThemeProvider>
+			{children}
+		</ThemeProvider>
 		</body>
 		</html>
 	);
