@@ -1,14 +1,16 @@
 "use client";
 
-import {Card} from "antd";
+import {Card, Typography} from "antd";
 import AddProductForm from "../../../../../components/forms/product/AddProductForm";
+
+const {Title, Text} = Typography;
 
 const AddProductPage = () => {
 	return (
 		<>
 			<div className="flex flex-col items-start mb-5">
-				<h2 className="text-3xl">Add Product</h2>
-				<p>Create and manage your products</p>
+				<Title level={2} className="m-0!">Add Product</Title>
+				<Text>Create and manage your products</Text>
 			</div>
 			<Card>
 				<AddProductForm/>

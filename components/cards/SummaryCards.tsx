@@ -1,8 +1,8 @@
 "use client"
 
+import type {StatisticProps} from "antd";
 import {Card, Statistic} from "antd";
 import React, {ComponentType} from "react";
-import type {StatisticProps} from "antd";
 
 type SummaryCardProps = {
 	icon: ComponentType;
@@ -13,7 +13,15 @@ type SummaryCardProps = {
 	formatter?: StatisticProps['formatter'];
 }
 
-const SummaryCards = React.memo(({icon: Icon, iconColor, bgIconColor, value, label, formatter}: SummaryCardProps) => {
+const SummaryCards = (
+	{
+		icon: Icon,
+		iconColor,
+		bgIconColor,
+		value,
+		label,
+		formatter
+	}: SummaryCardProps) => {
 	return (
 		<Card
 			className="rounded-lg"
@@ -31,6 +39,6 @@ const SummaryCards = React.memo(({icon: Icon, iconColor, bgIconColor, value, lab
 			</div>
 		</Card>
 	);
-});
+}
 
 export default SummaryCards;
