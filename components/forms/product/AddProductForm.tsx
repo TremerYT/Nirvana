@@ -1,8 +1,21 @@
-import type {UploadProps} from "antd";
-import {Button, Col, Form, Input, InputNumber, Row, Select, Space, Upload} from "antd";
+import {
+	Button,
+	Checkbox,
+	Col,
+	DatePicker,
+	Form,
+	Input,
+	InputNumber,
+	Row,
+	Select,
+	Space,
+	Upload,
+	UploadProps
+} from "antd";
 import {useEffect} from "react";
 import {generateProductCode} from "../../../utils/utils";
 import {InboxOutlined, PlusOutlined} from "@ant-design/icons";
+import dayjs from "dayjs";
 
 const {Dragger} = Upload;
 
@@ -17,6 +30,7 @@ const AddProductForm = () => {
 	const [form] = Form.useForm();
 	const currentDiscountType = Form.useWatch("discountType", form);
 	const currentTaxType = Form.useWatch("taxType", form);
+	const isPromotional = Form.useWatch("isPromotionalPrice", form);
 	
 	useEffect(() => {
 		form.setFieldValue("productCode", generateProductCode());
@@ -266,7 +280,7 @@ const AddProductForm = () => {
 					</Row>
 				</Col>
 				<Col span={8}>
-					<Row gutter={[0, 16]}>
+					<Row gutter={[16, 16]}>
 						<Col span={24}>
 							<Form.Item
 								name="mainImage"
@@ -305,6 +319,88 @@ const AddProductForm = () => {
 								</Upload>
 							</Form.Item>
 						</Col>
+						<Col span={24}>
+							<Form.Item
+								label="Add featured"
+								name="addFeatured"
+								valuePropName="checked"
+							>
+								<Checkbox>
+									This makes the product visible in the mobile app and the POS
+								</Checkbox>
+							</Form.Item>
+						</Col>
+						<Col span={24}>
+							<Form.Item
+								name="isPromotionalPrice"
+								valuePropName="checked"
+							>
+								<Checkbox>
+									Add Promotional Sale
+								</Checkbox>
+							</Form.Item>
+						</Col>
+						{
+							isPromotional && (
+								<>
+									<Col span={8}>
+										<Form.Item
+											name="promotionalPrice"
+											label="Promotional Price"
+											initialValue={0}
+											rules={[
+												({getFieldValue}) => ({
+													validator(_, value) {
+														const basePrice = getFieldValue("unitPrice");
+														
+														if (!value) return Promise.resolve();
+														
+														if (value >= basePrice) {
+															return Promise.reject("Promo price must be less than base price");
+														}
+														
+														return Promise.resolve();
+													},
+												}),
+											]}
+										>
+											<InputNumber className={"w-full!"}/>
+										</Form.Item>
+									</Col>
+									<Col span={8}>
+										<Form.Item
+											name="startDate"
+											label="Start Date"
+										>
+											<DatePicker disabledDate={(current) => current && current < dayjs().endOf('day')}/>
+										</Form.Item>
+									</Col>
+									<Col span={8}>
+										<Form.Item
+											name="endDate"
+											label="End Date"
+											rules={[
+												({getFieldValue}) => ({
+													validator(_, value) {
+														const start = getFieldValue("startDate");
+														
+														if (!value || !start) return Promise.resolve();
+														
+														if (value.isBefore(start)) {
+															return Promise.reject("End date must be after start date");
+														}
+														
+														return Promise.resolve();
+													},
+												}),
+											]}
+										>
+											<DatePicker disabledDate={(current) => current && current < dayjs().endOf('day')}/>
+										</Form.Item>
+									</Col>
+								</>
+							)
+						}
 					</Row>
 				</Col>
 			</Row>
