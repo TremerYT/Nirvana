@@ -1,15 +1,19 @@
 "use client"
 import dynamic from "next/dynamic";
 import React from "react";
+import {useTheme} from "../../hooks/useTheme";
 
 const Chart = dynamic(() => import("react-apexcharts"), {ssr: false});
 
 const CustomerChart = () => {
+	const {isDark} = useTheme();
+	
 	const options = {
 		chart: {
 			type: "radialBar" as const,
 			height: "100%",
-			width: "100%"
+			width: "100%",
+			background: 'transparent'
 		},
 		plotOptions: {
 			radialBar: {
@@ -17,7 +21,7 @@ const CustomerChart = () => {
 					size: "40%"
 				},
 				track: {
-					background: "#f2f2f2",
+					background: isDark ? "#2a2a2a" : "#f2f2f2",
 					strokeWidth: "15%"
 				},
 				dataLabels: {
@@ -26,7 +30,8 @@ const CustomerChart = () => {
 					},
 					value: {
 						show: true,
-						fontSize: "16px"
+						fontSize: "16px",
+						color: isDark ? '#ffffff' : '#000000'
 					}
 				}
 			}
@@ -48,7 +53,13 @@ const CustomerChart = () => {
 		],
 		legend: {
 			show: true,
-			position: "bottom" as const
+			position: "bottom" as const,
+			labels: {
+				colors: isDark ? '#ffffff' : '#000000'
+			}
+		},
+		tooltip: {
+			theme: isDark ? "dark" as const : "light" as const
 		}
 	};
 	

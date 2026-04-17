@@ -280,7 +280,7 @@ const AddProductForm = () => {
 					</Row>
 				</Col>
 				<Col span={8}>
-					<Row gutter={[16, 16]}>
+					<Row gutter={[10, 10]}>
 						<Col span={24}>
 							<Form.Item
 								name="mainImage"

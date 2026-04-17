@@ -4,14 +4,18 @@ import {months} from "../../constants/constants";
 import {MdTrendingUp} from "react-icons/md";
 import dynamic from "next/dynamic";
 import React from "react";
+import {useTheme} from "../../hooks/useTheme";
 
 const Chart = dynamic(() => import("react-apexcharts"), {ssr: false});
 
 const SalesOrdersAnalytics = () => {
+	const {isDark} = useTheme();
+	
 	const options = {
 		chart: {
 			type: "bar" as const,
-			height: "100%"
+			height: "100%",
+			background: 'transparent'
 		},
 		plotOptions: {
 			bar: {
@@ -42,7 +46,10 @@ const SalesOrdersAnalytics = () => {
 		yaxis: {
 			labels: {
 				align: "left" as const,
-				offsetX: -12
+				offsetX: -12,
+				style: {
+					colors: isDark ? '#ffffff' : '#000000'
+				}
 			},
 			axisBorder: {
 				show: false
@@ -56,7 +63,7 @@ const SalesOrdersAnalytics = () => {
 		},
 		colors: ["#8080ff"],
 		tooltip: {
-			theme: "dark" as const
+			theme: isDark ? "dark" as const : "light" as const
 		}
 	};
 	
@@ -76,7 +83,6 @@ const SalesOrdersAnalytics = () => {
 							color="#ccffcc"
 							icon={<MdTrendingUp color="#33cc33" className="text-2xl"/>}
 							className="py-0.5! flex! items-center gap-1"
-						
 						>
 							<span style={{color: '#33cc33', fontWeight: 'bold'}} className="text-[15px]">
 								61%
