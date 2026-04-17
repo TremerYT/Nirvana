@@ -2,14 +2,18 @@
 import {Card} from "antd";
 import dynamic from "next/dynamic";
 import React from "react";
+import {useTheme} from "../../hooks/useTheme";
 
 const Chart = dynamic(() => import("react-apexcharts"), {ssr: false});
 
 const TotalRevenue = () => {
+	const {isDark} = useTheme();
+	
 	const options = {
 		chart: {
 			type: "area" as const,
-			height: 343
+			height: 343,
+			background: 'transparent'
 		},
 		stroke: {
 			curve: "smooth" as const,
@@ -19,7 +23,7 @@ const TotalRevenue = () => {
 			enabled: false
 		},
 		grid: {
-			borderColor: "#e7e7e7",
+			borderColor: isDark ? "#2a2a2a" : "#e7e7e7",
 			clipMarkers: false,
 			xaxis: {
 				lines: {
@@ -33,19 +37,33 @@ const TotalRevenue = () => {
 			}
 		},
 		xaxis: {
-			categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+			categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+			labels: {
+				style: {
+					colors: isDark ? '#ffffff' : '#000000'
+				}
+			},
+			axisBorder: {
+				color: isDark ? "#2a2a2a" : "#e7e7e7"
+			}
 		},
 		yaxis: {
 			labels: {
-				formatter: (val: number) => val.toLocaleString()
+				formatter: (val: number) => val.toLocaleString(),
+				style: {
+					colors: isDark ? '#ffffff' : '#000000'
+				}
 			}
 		},
 		colors: ["#86d39b", "#ff4d4f"],
 		legend: {
-			position: "top" as const
+			position: "top" as const,
+			labels: {
+				colors: isDark ? '#ffffff' : '#000000'
+			}
 		},
 		tooltip: {
-			theme: "dark" as const,
+			theme: isDark ? "dark" as const : "light" as const,
 			y: {
 				formatter: (val: number) => val.toLocaleString()
 			}

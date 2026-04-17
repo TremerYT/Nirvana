@@ -1,6 +1,6 @@
 "use client";
 
-import React, {createContext, useContext, useState} from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import {ConfigProvider} from 'antd';
 import {darkTheme, lightTheme} from "@/app/theme";
 
@@ -11,13 +11,16 @@ const ThemeContext = createContext({
 });
 
 export const ThemeProvider = ({children}: { children: React.ReactNode }) => {
-	const [isDark, setIsDark] = useState(() => {
-		if (typeof window !== 'undefined') {
-			const savedTheme = localStorage.getItem('theme');
-			return savedTheme === 'dark';
+	const [isDark, setIsDark] = useState(false);
+
+	useEffect(() => {
+		const savedTheme = localStorage.getItem('theme');
+		if (savedTheme) {
+			setIsDark(savedTheme === 'dark');
+		} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			setIsDark(true);
 		}
-		return false;
-	});
+	}, []);
 	
 	const toggle = () => {
 		const next = !isDark;

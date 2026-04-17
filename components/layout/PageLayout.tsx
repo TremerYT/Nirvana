@@ -40,6 +40,7 @@ const PageLayout = ({children}: LayoutProps) => {
 								alt="Nirvana-icon"
 								width={145}
 								height={45}
+								loading="eager"
 								className="h-auto w-auto object-contain max-w-45 max-h-11.25 min-w-45 min-h-12.25"
 							/>) : (
 							<Image
@@ -47,6 +48,7 @@ const PageLayout = ({children}: LayoutProps) => {
 								alt="Nirvana logo"
 								width={145}
 								height={45}
+								loading="eager"
 								className="h-auto w-auto object-contain max-w-45 max-h-11.25 min-w-45 min-h-12.25"
 							/>
 						)
