@@ -153,25 +153,28 @@ const Dashboard = () => {
 						<OverallReport/>
 					</Card>
 					<Card title="Overall information">
-						<div className="mt-4 flex gap-4">
-							<div
-								className="bg-gray-100 rounded-lg px-4 py-3 flex flex-col items-center justify-center gap-2 w-1/3">
-								<FaUser className="text-xl text-blue-500"/>
-								<p className="text-sm">Suppliers</p>
-								<p className="text-lg font-bold!">25</p>
-							</div>
-							<div
-								className="bg-gray-100 rounded-lg px-4 py-3 flex flex-col items-center justify-center gap-2 w-1/3">
-								<FaUsers className="text-xl text-amber-500"/>
-								<p className="text-sm">Customers</p>
-								<p className="text-lg font-bold!">135</p>
-							</div>
-							<div
-								className="bg-gray-100 rounded-lg px-4 py-3 flex flex-col items-center justify-center gap-2 w-1/3">
-								<FaShoppingCart className="text-xl text-green-500"/>
-								<p className="text-sm">Orders</p>
-								<p className="text-lg font-bold!">202</p>
-							</div>
+						<div className="mt-4 flex gap-4 justify-center">
+							<Card className="w-1/3">
+								<div className="flex flex-col items-center justify-center gap-2">
+									<FaUser className="text-xl text-blue-500"/>
+									<p className="text-sm">Suppliers</p>
+									<p className="text-lg font-bold!">25</p>
+								</div>
+							</Card>
+							<Card className="w-1/3">
+								<div className="flex flex-col items-center gap-2">
+									<FaUsers className="text-xl text-amber-500"/>
+									<p className="text-sm">Customers</p>
+									<p className="text-lg font-bold!">135</p>
+								</div>
+							</Card>
+							<Card className="w-1/3">
+								<div className="flex flex-col items-center justify-center gap-2">
+									<FaShoppingCart className="text-xl text-green-500"/>
+									<p className="text-sm">Orders</p>
+									<p className="text-lg font-bold!">202</p>
+								</div>
+							</Card>
 						</div>
 						<Divider style={{borderWidth: 0.5, color: "#cfcfcf"}}/>
 						<div className="flex items-center gap-6">
