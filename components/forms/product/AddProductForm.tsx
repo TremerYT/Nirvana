@@ -280,7 +280,7 @@ const AddProductForm = () => {
 					</Row>
 				</Col>
 				<Col span={8}>
-					<Row gutter={[10, 10]}>
+					<Row>
 						<Col span={24}>
 							<Form.Item
 								name="mainImage"
@@ -321,7 +321,6 @@ const AddProductForm = () => {
 						</Col>
 						<Col span={24}>
 							<Form.Item
-								label="Add featured"
 								name="addFeatured"
 								valuePropName="checked"
 							>
