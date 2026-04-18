@@ -1,9 +1,22 @@
-import {JSX} from "react";
+import React, {JSX, useState} from "react";
 import {Button, Space, Table, Tag, Tooltip} from "antd";
 import {DeleteOutlined, EditOutlined, EyeOutlined} from "@ant-design/icons";
 import {purchaseMockData} from "../../mock/mock";
+import type {ColumnsType} from "antd/es/table";
 
-const columns = [
+interface Purchase {
+	date: string;
+	referenceNumber: string;
+	supplierName: string;
+	wareHouse: string;
+	status: string;
+	grandTotal: number;
+	paid: number;
+	due: number;
+	paymentStatus: string;
+}
+
+const columns: ColumnsType<Purchase> = [
 	{
 		title: "DATE",
 		dataIndex: "date",
@@ -16,8 +29,8 @@ const columns = [
 	},
 	{
 		title: "SUPPLIER NAME",
-		dataIndex: "customerName",
-		key: "customerName"
+		dataIndex: "supplierName",
+		key: "supplierName"
 	},
 	{
 		title: "WAREHOUSE",
@@ -28,13 +41,13 @@ const columns = [
 		title: "STATUS",
 		dataIndex: "status",
 		key: "status",
-		render: (text: string, record: { status: string }): JSX.Element => (
+		render: (value: string): JSX.Element => (
 			<Tag color={
-				record.status === "pending" ? "red" :
-					record.status === "received" ? "green" :
-						record.status === "ordered" ? "blue" : ""
+				value === "pending" ? "red" :
+					value === "received" ? "green" :
+						value === "ordered" ? "blue" : ""
 			}>
-				{record.status}
+				{value}
 			</Tag>
 		),
 	},
@@ -57,21 +70,21 @@ const columns = [
 		title: "PAYMENT STATUS",
 		dataIndex: "paymentStatus",
 		key: "paymentStatus",
-		render: (text: string, record: { paymentStatus: string }): JSX.Element => (
+		render: (value: string): JSX.Element => (
 			<Tag color={
-				record.paymentStatus === "unpaid" ? "red" :
-					record.paymentStatus === "paid" ? "green" :
-						record.paymentStatus === "partial" ? "orange" : ""
+				value === "unpaid" ? "red" :
+					value === "paid" ? "green" :
+						value === "partial" ? "orange" : ""
 			}>
-				{record.paymentStatus}
+				{value}
 			</Tag>
-		)
+		),
 	},
 	{
 		title: "ACTION",
 		dataIndex: "action",
 		key: "action",
-		render: (_: unknown, record: { status: string }): JSX.Element => (
+		render: (_, record): JSX.Element => (
 			<Space size={"middle"}>
 				<Tooltip title="View">
 					<Button icon={<EyeOutlined/>}/>
@@ -88,11 +101,22 @@ const columns = [
 ]
 
 const PurchaseTable = () => {
+	const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+	
+	const onSelectChange = (selectedRowKeys: React.Key[]) => {
+		setSelectedRowKeys(selectedRowKeys);
+	};
+	
 	return (
 		<Table
 			columns={columns}
+			rowKey="referenceNumber"
 			dataSource={purchaseMockData}
 			pagination={{pageSize: 5}}
+			rowSelection={{
+				selectedRowKeys,
+				onChange: onSelectChange,
+			}}
 		/>
 	);
 }

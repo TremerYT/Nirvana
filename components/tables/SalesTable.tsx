@@ -1,9 +1,22 @@
 import {Button, Space, Table, Tag, Tooltip} from "antd";
-import {JSX} from "react";
+import React, {JSX, useState} from "react";
 import {DeleteOutlined, EditOutlined, EyeOutlined} from "@ant-design/icons";
 import {salesMockData} from "../../mock/mock";
+import type {ColumnsType} from "antd/es/table";
 
-const columns = [
+interface Sales {
+	date: string;
+	referenceNumber: string;
+	customerName: string;
+	status: string;
+	grandTotal: number;
+	paid: number;
+	due: number;
+	paymentStatus: string;
+}
+
+
+const columns: ColumnsType<Sales> = [
 	{
 		title: "DATE",
 		dataIndex: "date",
@@ -66,7 +79,7 @@ const columns = [
 		title: "ACTION",
 		dataIndex: "action",
 		key: "action",
-		render: (_: unknown, record: { status: string }): JSX.Element => (
+		render: (_, record): JSX.Element => (
 			<Space size={"middle"}>
 				<Tooltip title="View">
 					<Button icon={<EyeOutlined/>}/>
@@ -83,11 +96,21 @@ const columns = [
 ]
 
 const SalesTable = () => {
+	const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+	
+	const onSelectChange = (selectedRowKeys: React.Key[]) => {
+		setSelectedRowKeys(selectedRowKeys);
+	};
+	
 	return (
 		<Table
 			columns={columns}
 			dataSource={salesMockData}
 			pagination={{pageSize: 5}}
+			rowSelection={{
+				selectedRowKeys,
+				onChange: onSelectChange,
+			}}
 		/>
 	)
 }
