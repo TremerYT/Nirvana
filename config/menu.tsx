@@ -39,5 +39,9 @@ export const items: MenuItem[] = [
 	getItem("Dashboard", '/', <DashboardOutlined/>),
 	getItem("Products", "/products", <AppstoreOutlined/>, [
 		getItem("Add Product", "/products/add", null),
+		getItem("Product List", "/products/list", null),
+		getItem("Product Units", "/products/units", null),
+		getItem("Brand List", "/products/brands", null),
+		getItem("Category List", "/products/categories", null)
 	])
 ];
