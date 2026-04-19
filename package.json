@@ -9,9 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ant-design/icons": "^6.1.1",
     "antd": "^6.3.2",
     "apexcharts": "^5.10.4",
-    "next": "^16.2.1",
+    "dayjs": "^1.11.20",
+    "next": "^16.2.4",
     "react": "19.2.3",
     "react-apexcharts": "^2.1.0",
     "react-countup": "^6.5.3",
