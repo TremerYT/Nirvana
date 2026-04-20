@@ -23,6 +23,10 @@ import TotalRevenue from '../../../components/charts/TotalRevenue';
 import PurchasesTable from '../../../components/tables/PurchasesTable';
 import SalesTable from '../../../components/tables/SalesTable';
 import { getGreeting, parseValue } from '../../../utils/utils';
+import {
+  RecentPurchasesTransaction,
+  RecentSalesTransactions,
+} from '@/components/tables/RecentTransactions';
 
 const Dashboard = () => {
   const [greeting] = useState(getGreeting);
@@ -193,12 +197,12 @@ const Dashboard = () => {
             {
               label: 'Sales',
               key: 'sales',
-              children: <SalesTable />,
+              children: <RecentSalesTransactions />,
             },
             {
               label: 'Purchases',
               key: 'purchases',
-              children: <PurchasesTable />,
+              children: <RecentPurchasesTransaction />,
             },
           ]}
         />

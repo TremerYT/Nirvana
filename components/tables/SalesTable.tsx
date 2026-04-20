@@ -1,30 +1,31 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, EyeOutlined, FileTextOutlined } from '@ant-design/icons';
 import { Button, Space, Table, Tag, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React, { JSX, useState } from 'react';
 import { salesMockData } from '../../mock/mock';
 
 interface Sales {
-  date: string;
   referenceNumber: string;
+  date: string;
   customerName: string;
   status: string;
-  grandTotal: number;
-  paid: number;
-  due: number;
+  biller: string;
+  grandTotal: string;
+  paid: string;
+  due: string;
   paymentStatus: string;
 }
 
 const columns: ColumnsType<Sales> = [
   {
+    title: 'REFERENCE NUMBER',
+    dataIndex: 'referenceNumber',
+    key: 'referenceNumber',
+  },
+  {
     title: 'DATE',
     dataIndex: 'date',
     key: 'date',
-  },
-  {
-    title: 'REFERENCE',
-    dataIndex: 'referenceNumber',
-    key: 'referenceNumber',
   },
   {
     title: 'CUSTOMER NAME',
@@ -37,34 +38,16 @@ const columns: ColumnsType<Sales> = [
     key: 'status',
     render: (text: string, record: { status: string }): JSX.Element => (
       <Tag
-        color={
-          record.status === 'pending'
-            ? 'red'
-            : record.status === 'received'
-              ? 'green'
-              : record.status === 'ordered'
-                ? 'blue'
-                : ''
-        }
+        color={record.status === 'incomplete' ? 'red' : record.status === 'complete' ? 'green' : ''}
       >
         {record.status}
       </Tag>
     ),
   },
   {
-    title: 'GRAND TOTAL',
-    dataIndex: 'grandTotal',
-    key: 'grandTotal',
-  },
-  {
-    title: 'PAID',
-    dataIndex: 'paid',
-    key: 'paid',
-  },
-  {
-    title: 'DUE',
-    dataIndex: 'due',
-    key: 'due',
+    title: 'BILLER',
+    dataIndex: 'biller',
+    key: 'biller',
   },
   {
     title: 'PAYMENT STATUS',
@@ -87,11 +70,29 @@ const columns: ColumnsType<Sales> = [
     ),
   },
   {
+    title: 'GRAND TOTAL',
+    dataIndex: 'grandTotal',
+    key: 'grandTotal',
+  },
+  {
+    title: 'PAID',
+    dataIndex: 'paid',
+    key: 'paid',
+  },
+  {
+    title: 'DUE',
+    dataIndex: 'due',
+    key: 'due',
+  },
+  {
     title: 'ACTION',
     dataIndex: 'action',
     key: 'action',
     render: (_, record): JSX.Element => (
       <Space size={'middle'}>
+        <Tooltip title="Invoice">
+          <Button icon={<FileTextOutlined />} />
+        </Tooltip>
         <Tooltip title="View">
           <Button icon={<EyeOutlined />} />
         </Tooltip>
@@ -115,9 +116,10 @@ const SalesTable = () => {
 
   return (
     <Table
+      rowKey={'referenceNumber'}
       columns={columns}
       dataSource={salesMockData}
-      pagination={{ pageSize: 5 }}
+      pagination={{ pageSize: 10 }}
       rowSelection={{
         selectedRowKeys,
         onChange: onSelectChange,
