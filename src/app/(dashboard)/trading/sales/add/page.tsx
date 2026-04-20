@@ -1,3 +1,6 @@
+'use client';
+
+import AddSalesForm from '@/components/forms/sales/AddSalesForm';
 import { Card, Typography } from 'antd';
 
 const { Title, Text } = Typography;
@@ -11,7 +14,9 @@ const AddSalesPage = () => {
         </Title>
         <Text>Create and manage your Sales</Text>
       </div>
-      <Card></Card>
+      <Card>
+        <AddSalesForm />
+      </Card>
     </>
   );
 };

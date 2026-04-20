@@ -268,7 +268,7 @@ const AddProductForm = () => {
           </Row>
         </Col>
         <Col span={8}>
-          <Row>
+          <Row gutter={[16, 0]}>
             <Col span={24}>
               <Form.Item
                 name="mainImage"
@@ -347,7 +347,7 @@ const AddProductForm = () => {
                 <Col span={8}>
                   <Form.Item name="startDate" label="Start Date">
                     <DatePicker
-                      disabledDate={(current) => current && current < dayjs().endOf('day')}
+                      disabledDate={(current) => current && current < dayjs().startOf('day')}
                     />
                   </Form.Item>
                 </Col>
@@ -372,7 +372,7 @@ const AddProductForm = () => {
                     ]}
                   >
                     <DatePicker
-                      disabledDate={(current) => current && current < dayjs().endOf('day')}
+                      disabledDate={(current) => current && current < dayjs().startOf('day')}
                     />
                   </Form.Item>
                 </Col>
