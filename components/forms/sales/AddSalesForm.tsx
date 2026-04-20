@@ -1,4 +1,6 @@
-import { AutoComplete, Col, DatePicker, Form, Input, Row, Select } from 'antd';
+import AddSaleDescription from '@/components/descriptions/AddSaleDescription';
+import AddSaleTable from '@/components/tables/AddSaleTable';
+import { AutoComplete, Button, Col, DatePicker, Form, Input, InputNumber, Row, Select } from 'antd';
 import dayjs from 'dayjs';
 
 const AddSalesForm = () => {
@@ -48,7 +50,57 @@ const AddSalesForm = () => {
             </AutoComplete>
           </Form.Item>
         </Col>
+        <Col span={24}>
+          <AddSaleTable />
+        </Col>
+        <Col span={24}>
+          <AddSaleDescription />
+        </Col>
+        <Col span={8}>
+          <Form.Item name="shipping" label="Shipping" initialValue={0}>
+            <InputNumber min={0} className="w-full!" />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item
+            name="saleStatus"
+            label="saleStatus"
+            rules={[{ required: true, message: 'Sale status is required' }]}
+          >
+            <Select
+              options={[
+                { value: 'complete', label: 'Complete' },
+                { value: 'inComplete', label: 'Incomplete' },
+              ]}
+              allowClear
+            />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item
+            name="paymentStatus"
+            label="Payment Status"
+            rules={[{ required: true, message: 'Payment Status is required' }]}
+          >
+            <Select
+              options={[
+                { value: 'paid', label: 'Paid' },
+                { value: 'unpaid', label: 'Unpaid' },
+                { value: 'partially', label: 'Partially' },
+              ]}
+              allowClear
+            />
+          </Form.Item>
+        </Col>
       </Row>
+      <div className="flex gap-4 justify-end">
+        <Button type={'primary'} htmlType={'submit'} size={'large'}>
+          Add Product
+        </Button>
+        <Button type={'primary'} htmlType={'reset'} size={'large'} danger>
+          Cancel
+        </Button>
+      </div>
     </Form>
   );
 };
