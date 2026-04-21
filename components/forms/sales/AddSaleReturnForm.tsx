@@ -109,6 +109,11 @@ const AddSaleReturnForm = () => {
               />
             </Form.Item>
           </Col>
+          <Col span={24}>
+            <Form.Item name="returnNote" label="Return Note">
+              <Input.TextArea rows={5} className="w-full!" />
+            </Form.Item>
+          </Col>
         </Row>
         <div className="flex gap-4 justify-end">
           <Button type={'primary'} htmlType={'submit'} size={'large'}>

@@ -1,8 +1,9 @@
 'use client';
 
+import SalesReturnTable from '@/components/tables/SaleReturnsTable';
 import SalesTable from '@/components/tables/SalesTable';
 import { FileExcelFilled, FilePdfFilled, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
-import { Button, Typography } from 'antd';
+import { Button, Tabs, Typography } from 'antd';
 
 const { Title, Text } = Typography;
 
@@ -25,7 +26,21 @@ const ListSales = () => {
           </Button>
         </div>
       </div>
-      <SalesTable />
+      <Tabs
+        defaultActiveKey="1"
+        items={[
+          {
+            label: 'Sales List',
+            key: 'sales',
+            children: <SalesTable />,
+          },
+          {
+            label: 'Sale Return',
+            key: 'saleReturn',
+            children: <SalesReturnTable />,
+          },
+        ]}
+      />
     </>
   );
 };
