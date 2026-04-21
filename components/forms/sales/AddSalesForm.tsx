@@ -64,7 +64,7 @@ const AddSalesForm = () => {
         <Col span={8}>
           <Form.Item
             name="saleStatus"
-            label="saleStatus"
+            label="Sale Status"
             rules={[{ required: true, message: 'Sale status is required' }]}
           >
             <Select
