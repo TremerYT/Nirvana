@@ -1,6 +1,17 @@
 import AddSaleDescription from '@/components/descriptions/AddSaleDescription';
 import AddSaleTable from '@/components/tables/AddSaleTable';
-import { AutoComplete, Card, Col, DatePicker, Form, Input, InputNumber, Row, Select } from 'antd';
+import {
+  AutoComplete,
+  Button,
+  Card,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+} from 'antd';
 import dayjs from 'dayjs';
 
 const AddSaleReturnForm = () => {
@@ -99,6 +110,14 @@ const AddSaleReturnForm = () => {
             </Form.Item>
           </Col>
         </Row>
+        <div className="flex gap-4 justify-end">
+          <Button type={'primary'} htmlType={'submit'} size={'large'}>
+            Add Return
+          </Button>
+          <Button type={'primary'} htmlType={'reset'} size={'large'} danger>
+            Cancel
+          </Button>
+        </div>
       </Form>
     </Card>
   );

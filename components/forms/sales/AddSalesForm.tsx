@@ -95,7 +95,7 @@ const AddSalesForm = () => {
       </Row>
       <div className="flex gap-4 justify-end">
         <Button type={'primary'} htmlType={'submit'} size={'large'}>
-          Add Product
+          Add Sale
         </Button>
         <Button type={'primary'} htmlType={'reset'} size={'large'} danger>
           Cancel
