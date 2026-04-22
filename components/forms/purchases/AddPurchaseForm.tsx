@@ -1,7 +1,7 @@
+'use client';
+
 import AddDescription from '@/components/descriptions/AddSaleDescription';
-import AddSaleDescription from '@/components/descriptions/AddSaleDescription';
 import AddTable from '@/components/tables/AddSaleTable';
-import AddSaleTable from '@/components/tables/AddSaleTable';
 import {
   AutoComplete,
   Button,
@@ -16,44 +16,35 @@ import {
 } from 'antd';
 import dayjs from 'dayjs';
 
-const AddSaleReturnForm = () => {
+const AddPurchaseForm = () => {
   const [form] = Form.useForm();
   return (
     <Card>
       <Form form={form} layout="vertical">
         <Row gutter={[16, 16]}>
-          <Col span={6}>
+          <Col span={8}>
             <Form.Item
               name="date"
               label="Date"
               rules={[{ required: true, message: 'Please enter date' }]}
             >
               <DatePicker
-                className="w-full!"
                 disabledDate={(current) => current && current < dayjs().startOf('day')}
+                className="w-full!"
               />
             </Form.Item>
           </Col>
-          <Col span={6}>
+          <Col span={8}>
             <Form.Item
-              name="customerName"
-              label="Customer"
+              name="supplierName"
+              label="Supplier"
               rules={[{ required: true, message: 'Please enter customer name' }]}
             >
               <Select options={[]} allowClear />
             </Form.Item>
           </Col>
-          <Col span={6}>
-            <Form.Item name="warehouse" label="Warehouse">
-              <Select options={[]} allowClear />
-            </Form.Item>
-          </Col>
-          <Col span={6}>
-            <Form.Item
-              name="biller"
-              label="Biller"
-              rules={[{ required: true, message: 'Please enter biller' }]}
-            >
+          <Col span={8}>
+            <Form.Item name="wareHouseName" label="Warehouse">
               <Select options={[]} allowClear />
             </Form.Item>
           </Col>
@@ -75,12 +66,12 @@ const AddSaleReturnForm = () => {
           <Col span={24}>
             <AddDescription />
           </Col>
-          <Col span={8}>
+          <Col span={12}>
             <Form.Item name="shipping" label="Shipping" initialValue={0}>
               <InputNumber min={0} className="w-full!" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={12}>
             <Form.Item
               name="saleStatus"
               label="Sale Status"
@@ -90,36 +81,21 @@ const AddSaleReturnForm = () => {
                 options={[
                   { value: 'complete', label: 'Complete' },
                   { value: 'inComplete', label: 'Incomplete' },
-                ]}
-                allowClear
-              />
-            </Form.Item>
-          </Col>
-          <Col span={8}>
-            <Form.Item
-              name="paymentStatus"
-              label="Payment Status"
-              rules={[{ required: true, message: 'Payment Status is required' }]}
-            >
-              <Select
-                options={[
-                  { value: 'paid', label: 'Paid' },
-                  { value: 'unpaid', label: 'Unpaid' },
-                  { value: 'partially', label: 'Partially' },
+                  { value: 'drafts', label: 'Drafts' },
                 ]}
                 allowClear
               />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item name="returnNote" label="Return Note">
-              <Input.TextArea rows={5} className="w-full!" />
+            <Form.Item name="purchaseNote" label="Purchase Note">
+              <Input.TextArea rows={5} />
             </Form.Item>
           </Col>
         </Row>
         <div className="flex gap-4 justify-end">
           <Button type={'primary'} htmlType={'submit'} size={'large'}>
-            Add Return
+            Add Sale
           </Button>
           <Button type={'primary'} htmlType={'reset'} size={'large'} danger>
             Cancel
@@ -130,4 +106,4 @@ const AddSaleReturnForm = () => {
   );
 };
 
-export default AddSaleReturnForm;
+export default AddPurchaseForm;

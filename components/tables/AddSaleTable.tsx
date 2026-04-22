@@ -72,8 +72,8 @@ const columns: ColumnsType<AddSaleTable> = [
   },
 ];
 
-const AddSaleTable = () => {
+const AddTable = () => {
   return <Table columns={columns} />;
 };
 
-export default AddSaleTable;
+export default AddTable;

@@ -23,7 +23,7 @@ const items = [
   },
 ];
 
-const AddSaleDescription = () => {
+const AddDescription = () => {
   return (
     <div className="flex justify-end">
       <Descriptions bordered size="small" layout="horizontal" column={1} className="w-1/2">
@@ -37,4 +37,4 @@ const AddSaleDescription = () => {
   );
 };
 
-export default AddSaleDescription;
+export default AddDescription;

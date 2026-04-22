@@ -59,7 +59,7 @@ export const items: MenuItem[] = [
       getItem('Sales Return', '/trading/sales/return', null),
     ]),
     getItem('Purchase', '/trading/purchase', null, [
-      getItem('New Purchase', '/trading/purchase/new', null),
+      getItem('New Purchase', '/trading/purchase/add', null),
       getItem('Purchase List', '/trading/purchase/list', null),
       getItem('Purchase Return', '/trading/purchase/return', null),
     ]),

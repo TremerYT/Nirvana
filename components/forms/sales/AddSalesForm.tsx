@@ -1,5 +1,6 @@
+import AddDescription from '@/components/descriptions/AddSaleDescription';
 import AddSaleDescription from '@/components/descriptions/AddSaleDescription';
-import AddSaleTable from '@/components/tables/AddSaleTable';
+import AddTable from '@/components/tables/AddSaleTable';
 import { AutoComplete, Button, Col, DatePicker, Form, Input, InputNumber, Row, Select } from 'antd';
 import dayjs from 'dayjs';
 
@@ -51,10 +52,10 @@ const AddSalesForm = () => {
           </Form.Item>
         </Col>
         <Col span={24}>
-          <AddSaleTable />
+          <AddTable />
         </Col>
         <Col span={24}>
-          <AddSaleDescription />
+          <AddDescription />
         </Col>
         <Col span={8}>
           <Form.Item name="shipping" label="Shipping" initialValue={0}>
